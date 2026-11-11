@@ -3,7 +3,7 @@
 #
 #   [[ -f "$HOME/dotfiles/zsh/base.zsh" ]] && source "$HOME/dotfiles/zsh/base.zsh"
 #
-# Load order: path.zsh → oh-my-zsh → tools.zsh (nvm, zoxide) → aliases.zsh → starship.
+# Load order: path.zsh → oh-my-zsh → tools.zsh (nvm, zoxide) → aliases.zsh → claude.zsh → starship.
 # Anything specific to one machine (SDKMAN, conda, Rust, work stuff) goes in that
 # machine's ~/.zshrc, after the source line.
 #
@@ -36,6 +36,7 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat 
 
 source "$DOTFILES/zsh/tools.zsh"
 source "$DOTFILES/zsh/aliases.zsh"
+source "$DOTFILES/zsh/claude.zsh"
 
 # Config: starship/starship.toml, linked to ~/.config/starship.toml
 (( _use_starship )) && eval "$(starship init zsh)"

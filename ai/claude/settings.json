@@ -2,5 +2,58 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/dotfiles/ai/claude/hooks/tmux-status.sh\" busy"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/dotfiles/ai/claude/hooks/tmux-status.sh\" busy"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/dotfiles/ai/claude/hooks/tmux-status.sh\" waiting"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/dotfiles/ai/claude/hooks/tmux-status.sh\" done"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/dotfiles/ai/claude/hooks/tmux-status.sh\" clear"
+          }
+        ]
+      }
+    ]
+  }
 }

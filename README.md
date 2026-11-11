@@ -63,6 +63,7 @@ New machines get this from `zsh/zshrc.template`. On an existing machine, `instal
 | `zsh/path.zsh` | Homebrew/Linuxbrew, `~/.local/bin`, `~/bin`, `~/go/bin` |
 | `zsh/tools.zsh` | nvm, zoxide (`z foo` to jump, `zi` to pick with fzf) |
 | `zsh/aliases.zsh` | git aliases, `dot` / `dotup` |
+| `zsh/claude.zsh` | `cw <task>`: Claude in a new git worktree + tmux window |
 
 Knobs to set before the source line: `ZSH_EXTRA_PLUGINS=(...)`, `DOTFILES_NO_STARSHIP=1`.
 
@@ -159,6 +160,32 @@ environments can't overwrite each other's saves.
 
 Ghostty's own `ctrl+h/j/k/l` split navigation is `performable:`. Ghostty only takes the key
 when it has a split in that direction, so in a single Ghostty pane the keys reach tmux and nvim.
+
+## Claude Code in tmux
+
+| Do | How |
+|---|---|
+| Claude in the current dir | `prefix a` → `n` |
+| Parallel task, isolated | `cw <task>` in a shell, or `prefix a` → `w`. Opens window `cc:<task>` running `claude -w <task>`: its own git worktree in `.claude/worktrees/<task>` on branch `worktree-<task>` |
+| Continue / pick an old conversation | `prefix a` → `c` / `r` |
+| Find the Claude that needs you | `prefix a` → `j` (tree of windows that are waiting or done) |
+| Background agents (`claude --bg`) | `prefix a` → `b` (`claude agents` view) |
+| Newline in Claude's input | `Shift+Enter` |
+
+**Status icons:** Claude Code hooks (`ai/claude/hooks/tmux-status.sh`, wired in `ai/claude/settings.json`) mark each window:
+󰔟 working, 󰂚 waiting for you (permission or input), ✓ done. The yellow `󰂚 N` badge at the right of the
+status bar counts the Claude windows waiting on you across **all** sessions, so nothing gets missed
+in a session you're not looking at.
+
+**After a reboot**, resurrect restarts each Claude as `claude --continue` in its pane's directory.
+Every project and worktree resumes its own last conversation.
+
+Rules of thumb:
+- **Parallel edits:** one worktree per task (`cw`). Never run two Claudes editing the same checkout.
+- **Read-only fan-out** (research, review, running tests): subagents inside one session. Cheaper, and their noise stays out of the main session's context.
+- **Fire-and-forget:** `claude --bg "..."`, then check on it with `prefix a` → `b`.
+- `claude -w` only works in a git repo you've already trusted (run plain `claude` there once). On exit Claude asks whether to keep the worktree.
+- In Claude's input, `C-a` (start of line) is the tmux prefix, so press it twice.
 
 ## Public repo: what stays out
 

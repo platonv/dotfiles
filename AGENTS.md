@@ -37,6 +37,10 @@ Personal dotfiles for Ubuntu and macOS. `README.md` has the full layout. This fi
 - `tmux/tmux.conf` → `~/.tmux.conf` (not XDG: tmux-which-key's XDG mode uses GNU-only `realpath --relative-to`).
   Give every new binding a `-N "note"` so `prefix ?` stays a complete cheat sheet. Plugins via TPM in `~/.tmux/plugins`.
   `C-h/j/k/l` are shared by Ghostty (`performable:`), tmux and nvim (vim-tmux-navigator), so keep all three in sync.
+- Claude Code + tmux: `ai/claude/hooks/tmux-status.sh` sets the tmux window option `@claude_state`
+  (busy|waiting|done) and the global `@claude_attention`. `tmux/tmux.conf` renders them (`@claude_icons`, status-right)
+  and has the `prefix a` menu. `tmux/claude-task.sh` is the shared launcher for `cw` and the menu. Change state names
+  in all three places at once.
 - `starship/starship.toml` uses an explicit `format` allow-list. Don't add cloud/k8s context modules.
   Nerd Font glyphs can get stripped by some editors and tools, so check them with a codepoint dump after editing.
 - `ai/claude/` holds only Claude Code `settings.json` for now. `~/.claude/CLAUDE.md` stays per machine and isn't tracked yet.

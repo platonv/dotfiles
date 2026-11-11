@@ -1,6 +1,8 @@
 # Global gitignore (~/.config/git/ignore -> ~/dotfiles/git/ignore)
 **/.claude/settings.local.json
 .DS_Store
+# Claude Code worktrees (claude -w / cw)
+.claude/worktrees/
 *.swp
 .env
 .env.*
