@@ -15,7 +15,7 @@ brew "jq"
 brew "lazygit"
 brew "neovim"
 brew "tree-sitter"
-brew "autojump"
+brew "zoxide"      # smarter cd: `z foo`, `zi` for fzf picker (init in zsh/tools.zsh)
 
 # ---------- Languages / runtimes ----------
 brew "node"

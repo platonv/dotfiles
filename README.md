@@ -61,7 +61,7 @@ New machines get this from `zsh/zshrc.template`. On an existing machine, `instal
 |---|---|
 | `zsh/base.zsh` | entry point: `$EDITOR`, oh-my-zsh + plugins, starship |
 | `zsh/path.zsh` | Homebrew/Linuxbrew, `~/.local/bin`, `~/bin`, `~/go/bin` |
-| `zsh/tools.zsh` | nvm |
+| `zsh/tools.zsh` | nvm, zoxide (`z foo` to jump, `zi` to pick with fzf) |
 | `zsh/aliases.zsh` | git aliases, `dot` / `dotup` |
 
 Knobs to set before the source line: `ZSH_EXTRA_PLUGINS=(...)`, `DOTFILES_NO_STARSHIP=1`.

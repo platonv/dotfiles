@@ -3,7 +3,7 @@
 #
 #   [[ -f "$HOME/dotfiles/zsh/base.zsh" ]] && source "$HOME/dotfiles/zsh/base.zsh"
 #
-# Load order: path.zsh → oh-my-zsh → tools.zsh → aliases.zsh → starship.
+# Load order: path.zsh → oh-my-zsh → tools.zsh (nvm, zoxide) → aliases.zsh → starship.
 # Anything specific to one machine (SDKMAN, conda, Rust, work stuff) goes in that
 # machine's ~/.zshrc, after the source line.
 #
