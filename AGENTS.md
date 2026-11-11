@@ -32,7 +32,8 @@ Personal dotfiles for Ubuntu and macOS. `README.md` has the full layout. This fi
   sources the base at the top (template: `zsh/zshrc.template`).
 - `packages/Brewfile` serves both OSes (casks inside `if OS.mac?`). `apt.txt` is just the Ubuntu base.
 - `nvim/` is a kickstart.nvim fork on `vim.pack` (Neovim ≥ 0.12). `nvim-pack-lock.json` pins plugins and is tracked.
-  Custom plugins go in `nvim/lua/custom/plugins/*.lua`.
+  Custom plugins go in `nvim/lua/custom/plugins/*.lua`: `keymaps.lua` (personal keymaps, every one needs a `desc`),
+  `explorer.lua` (neo-tree, right side). Keep `init.lua` close to upstream kickstart so it stays easy to compare.
 - `tmux/tmux.conf` → `~/.tmux.conf` (not XDG: tmux-which-key's XDG mode uses GNU-only `realpath --relative-to`).
   Give every new binding a `-N "note"` so `prefix ?` stays a complete cheat sheet. Plugins via TPM in `~/.tmux/plugins`.
   `C-h/j/k/l` are shared by Ghostty (`performable:`), tmux and nvim (vim-tmux-navigator), so keep all three in sync.

@@ -105,6 +105,29 @@ Anything `link.sh` would replace gets moved to `~/.dotfiles-backup/<timestamp>/`
 | `alt+.` | command palette |
 | `ctrl+shift+f` | search scrollback |
 
+### nvim keys
+
+Leader is **Space**. Lost? Press **`<leader>?`** for a searchable list of every keymap, or press
+`<leader>` and wait for the which-key popup. Inside the explorer or a Telescope picker, `?` shows its own keys.
+
+| Keys | Action |
+|---|---|
+| `<leader>p` | find files (includes dotfiles, skips `.git`) |
+| `<leader>f` | search text across the project (live grep). In visual mode: search the selection |
+| `<leader>o` / `<leader>O` | symbols in file (LSP, falls back to Treesitter) / in workspace |
+| `<leader>e` | file explorer (neo-tree), docked on the right, reveals the current file |
+| `<leader><leader>` | open buffers |
+| `<leader>s…` | more Telescope pickers: help, diagnostics, recent files, resume... |
+| `<leader>w` | save |
+| `<leader>cf` | format buffer (also runs on save) |
+| `<leader>bd` / `<leader>bo` | close buffer / close all other buffers |
+| `<leader>\|` or `<leader>\` / `<leader>-` | split right / down (same keys as tmux) |
+| `C-h/j/k/l` | move between splits and tmux panes |
+| visual `J` / `K`, `<` / `>` | move lines, indent while keeping the selection |
+
+Icons come from mini.icons and need a Nerd Font in the terminal. JetBrainsMono Nerd Font is installed by
+`packages/` and set in Ghostty. Custom config lives in `nvim/lua/custom/plugins/` (`keymaps.lua`, `explorer.lua`).
+
 ### tmux keys
 
 Prefix is **`C-a`** (press twice to send a literal `C-a`). Tips for finding shortcuts:
