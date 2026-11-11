@@ -1,0 +1,12 @@
+# Ubuntu/Debian base packages, one per line. Installed by packages/install-linux.sh.
+# Keep it to system-level things. CLI tools come from the Brewfile (Linuxbrew)
+# so versions match macOS.
+build-essential
+curl
+wget
+git
+zsh
+unzip
+fontconfig
+procps
+file

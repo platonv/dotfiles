@@ -1,0 +1,24 @@
+# ~/.gitconfig -> ~/dotfiles/git/gitconfig
+# Shared git settings. Identity and credentials live in ~/.gitconfig.local
+# (not in git), so a work machine can use a work email without touching this repo.
+# Template: git/gitconfig.local.example
+
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
+	excludesFile = ~/.config/git/ignore
+[pull]
+	ff = only
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[rerere]
+	enabled = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+# Must stay last so local values win.
+[include]
+	path = ~/.gitconfig.local

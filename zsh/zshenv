@@ -1,0 +1,10 @@
+# ~/.zshenv -> ~/dotfiles/zsh/zshenv
+# Read by every zsh, including non-interactive ones (scripts, editors, AI agents).
+# Keep it small: only what non-interactive shells need.
+
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+export EDITOR="${EDITOR:-nvim}"
+export VISUAL="$EDITOR"
+
+[[ -f "$HOME/.zshenv.local" ]] && source "$HOME/.zshenv.local"

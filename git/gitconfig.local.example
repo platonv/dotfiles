@@ -1,0 +1,13 @@
+# Copy to ~/.gitconfig.local and fill in. That file is per machine and never committed.
+[user]
+	name = Your Name
+	email = you@example.com
+
+[credential]
+	# Linux: `store` (plaintext ~/.git-credentials) or `libsecret`
+	# macOS: osxkeychain
+	helper = store
+
+# Work repos: different identity per directory, no work details in this repo.
+# [includeIf "gitdir:~/work/"]
+# 	path = ~/.gitconfig.work

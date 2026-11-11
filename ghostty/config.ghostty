@@ -1,0 +1,57 @@
+# Ghostty config, shared by Linux and macOS.
+# Linked to ~/.config/ghostty/config.ghostty by scripts/link.sh.
+# Reference: `ghostty +show-config --default --docs`
+# Validate:  `ghostty +validate-config`
+# Reload:    ctrl+shift+comma (Linux) / cmd+shift+comma (macOS)
+#
+# Ported from the old WezTerm setup: same theme, font and alt-based pane keys.
+
+# ---------- Look ----------
+theme = Catppuccin Mocha
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+background-opacity = 0.9
+# Only takes effect on macOS (and some Linux compositors).
+background-blur = 20
+window-padding-x = 6
+window-padding-y = 4
+
+# ---------- Behaviour ----------
+confirm-close-surface = false
+copy-on-select = clipboard
+# 25 MB of scrollback per surface (Ghostty counts bytes, not lines).
+scrollback-limit = 25000000
+shell-integration-features = cursor,sudo,title
+
+# macOS: let Option act as Alt so the alt+ keybindings below work.
+macos-option-as-alt = true
+
+# ---------- Splits ----------
+keybind = alt+backslash=new_split:right
+keybind = alt+minus=new_split:down
+keybind = alt+enter=new_split:down
+
+# Navigate splits vim style. Neovim's own <C-hjkl> maps are disabled in
+# nvim/init.lua, so these don't collide.
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:down
+keybind = ctrl+k=goto_split:up
+keybind = ctrl+l=goto_split:right
+
+keybind = alt+shift+h=resize_split:left,50
+keybind = alt+shift+j=resize_split:down,30
+keybind = alt+shift+k=resize_split:up,30
+keybind = alt+shift+l=resize_split:right,50
+
+keybind = alt+z=toggle_split_zoom
+keybind = alt+x=close_surface
+
+# ---------- Tabs ----------
+keybind = alt+t=new_tab
+keybind = alt+left_bracket=previous_tab
+keybind = alt+right_bracket=next_tab
+
+# ---------- Misc ----------
+keybind = ctrl+shift+f=start_search
+keybind = ctrl+f=toggle_fullscreen
+keybind = alt+period=toggle_command_palette

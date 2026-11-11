@@ -1,0 +1,34 @@
+# Homebrew bundle. Used on macOS (Homebrew) and Linux (Linuxbrew).
+#   brew bundle --file=~/dotfiles/packages/Brewfile
+# Casks only exist on macOS. Linux GUI apps are in packages/install-linux.sh.
+# Only personal tools belong here. Work-only tools go in a private Brewfile.local.
+
+# ---------- Shell & terminal ----------
+brew "git"
+brew "gh"
+brew "zsh"
+brew "starship"
+brew "tmux"
+brew "fzf"
+brew "ripgrep"
+brew "jq"
+brew "lazygit"
+brew "neovim"
+brew "tree-sitter"
+brew "autojump"
+
+# ---------- Languages / runtimes ----------
+brew "node"
+brew "pipx"
+brew "go"
+
+if OS.mac?
+  cask "ghostty"
+  cask "zed"
+  cask "visual-studio-code"
+  cask "font-jetbrains-mono-nerd-font"
+  cask "docker"
+  cask "spotify"
+  cask "vlc"
+  cask "discord"
+end

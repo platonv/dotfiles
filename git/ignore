@@ -1,0 +1,7 @@
+# Global gitignore (~/.config/git/ignore -> ~/dotfiles/git/ignore)
+**/.claude/settings.local.json
+.DS_Store
+*.swp
+.env
+.env.*
+!.env.example

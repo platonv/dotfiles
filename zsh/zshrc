@@ -1,0 +1,36 @@
+# ~/.zshrc -> ~/dotfiles/zsh/zshrc
+# Interactive zsh setup shared by Linux and macOS.
+#
+# Load order:
+#   1. path.zsh    PATH and package-manager shellenv (brew etc.)
+#   2. oh-my-zsh   plugins, completion (runs compinit once)
+#   3. tools.zsh   language/version managers (nvm, sdkman, conda, ...)
+#   4. aliases.zsh
+#   5. ~/.zshrc.local  machine-specific / private, NOT in git
+#
+# Every tool block checks that the tool exists, so a missing tool never breaks the shell.
+
+export DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+
+source "$DOTFILES/zsh/path.zsh"
+
+# ---------- oh-my-zsh ----------
+export ZSH="$HOME/.oh-my-zsh"
+# starship draws the prompt when installed. Otherwise fall back to an omz theme.
+if command -v starship >/dev/null 2>&1; then ZSH_THEME=""; else ZSH_THEME="robbyrussell"; fi
+
+# Custom plugins are cloned by scripts/install-shell.sh
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting you-should-use zsh-bat)
+
+# Extra completion dirs must be on fpath before omz runs compinit.
+[[ -d "$HOME/.local/share/scalacli/completions/zsh" ]] && fpath=("$HOME/.local/share/scalacli/completions/zsh" $fpath)
+
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
+
+source "$DOTFILES/zsh/tools.zsh"
+source "$DOTFILES/zsh/aliases.zsh"
+
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+# Machine-specific and private config (work stuff, tokens, one-off paths).
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

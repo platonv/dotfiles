@@ -1,0 +1,11 @@
+# Private / machine-specific: never commit
+*.local
+*.local.*
+!*.local.example
+Brewfile.local
+Brewfile.lock.json
+.env
+.env.*
+**/.claude/settings.local.json
+
+.DS_Store
