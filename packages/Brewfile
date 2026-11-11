@@ -22,6 +22,9 @@ brew "node"
 brew "pipx"
 brew "go"
 
+# A Brewfile is Ruby, so `if OS.mac?` is a plain Ruby condition that Homebrew evaluates.
+# It's true only on macOS. Casks (GUI apps, fonts) don't exist on Linuxbrew, so everything
+# in this block is skipped on Ubuntu. Linux GUI apps are in packages/install-linux.sh.
 if OS.mac?
   cask "ghostty"
   cask "zed"

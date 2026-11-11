@@ -75,7 +75,7 @@ Knobs to set before the source line: `ZSH_EXTRA_PLUGINS=(...)`, `DOTFILES_NO_STA
 | `starship/starship.toml` | `~/.config/starship.toml` |
 | `nvim/` (kickstart.nvim fork, `vim.pack`, Neovim ≥ 0.12) | `~/.config/nvim` |
 | `zed/settings.json` | `~/.config/zed/settings.json` |
-| `ai/claude/CLAUDE.md`, `ai/claude/settings.json` | `~/.claude/` |
+| `ai/claude/settings.json` | `~/.claude/settings.json` |
 
 `links.conf` is the manifest. To add a config:
 1. `mv ~/.config/foo/config ~/dotfiles/foo/config`
@@ -112,7 +112,6 @@ They go in local files that git never sees:
 |---|---|
 | `~/.zshrc` | everything machine-specific in the shell |
 | `~/.gitconfig.local` | git identity, credential helper, `includeIf` for other identities |
-| `~/.claude/CLAUDE.local.md` | private AI instructions (imported by `ai/claude/CLAUDE.md`) |
 | `packages/Brewfile.local` | extra packages for one machine (gitignored) |
 | `~/.config/dotfiles/blocklist` | words the leak check must reject |
 

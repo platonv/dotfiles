@@ -67,8 +67,7 @@ post_link() {
     cp "$DOTFILES/git/gitconfig.local.example" "$HOME/.gitconfig.local"
     warn "created ~/.gitconfig.local from the template. Set your name/email in it."
   fi
-  mkdir -p "$HOME/.claude" "$HOME/.config/dotfiles"
-  touch "$HOME/.claude/CLAUDE.local.md"
+  mkdir -p "$HOME/.config/dotfiles"
   if [[ ! -f "$HOME/.config/dotfiles/blocklist" ]]; then
     printf '# One case-insensitive regex per line. The leak check rejects commits that match.\n' > "$HOME/.config/dotfiles/blocklist"
     warn "add terms that must never be committed to ~/.config/dotfiles/blocklist"

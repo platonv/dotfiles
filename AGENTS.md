@@ -35,7 +35,7 @@ Personal dotfiles for Ubuntu and macOS. `README.md` has the full layout. This fi
   Custom plugins go in `nvim/lua/custom/plugins/*.lua`.
 - `starship/starship.toml` uses an explicit `format` allow-list. Don't add cloud/k8s context modules.
   Nerd Font glyphs can get stripped by some editors and tools, so check them with a codepoint dump after editing.
-- `ai/claude/CLAUDE.md` is the user's global Claude Code instructions. It imports `~/.claude/CLAUDE.local.md` for private context.
+- `ai/claude/` holds only Claude Code `settings.json` for now. `~/.claude/CLAUDE.md` stays per machine and isn't tracked yet.
 
 ## Common tasks
 
