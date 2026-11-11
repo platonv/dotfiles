@@ -1,0 +1,10 @@
+# ~/.zshrc for this machine. Owned by the machine, NOT tracked in dotfiles.
+# Created from ~/dotfiles/zsh/zshrc.template by ./install.sh shell (only if ~/.zshrc didn't exist).
+
+# Optional, before the base:
+# ZSH_EXTRA_PLUGINS=(docker)
+
+# Shared base: oh-my-zsh + plugins, PATH, nvm, aliases, starship
+[[ -f "$HOME/dotfiles/zsh/base.zsh" ]] && source "$HOME/dotfiles/zsh/base.zsh"
+
+# ---------- Machine-specific config below ----------

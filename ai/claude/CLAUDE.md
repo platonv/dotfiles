@@ -11,8 +11,9 @@ Private, machine-specific instructions live in
 
 ## Dotfiles
 
-- My configs live in `~/dotfiles` (public GitHub repo `platonv/dotfiles`), symlinked into place. See its `AGENTS.md` before editing.
+- My configs live in `~/dotfiles` (a public GitHub repo), symlinked into place. See its `AGENTS.md` before editing.
 - When you change a config that is symlinked from `~/dotfiles`, edit the repo file and offer to commit it.
-- That repo is public: never put secrets, hostnames/IPs, or anything work-related in it.
+- That repo is public: never put secrets, hostnames/IPs, personal details, or anything work-related in it.
+- `~/.zshrc` belongs to each machine and only sources `~/dotfiles/zsh/base.zsh`. Put machine-specific shell config there, shared config in the base.
 
 @~/.claude/CLAUDE.local.md

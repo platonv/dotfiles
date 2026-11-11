@@ -1,4 +1,4 @@
-# Aliases. Put machine-specific ones in ~/.zshrc.local instead.
+# Shared aliases. Machine-specific ones go in that machine's ~/.zshrc.
 
 # git (on top of the oh-my-zsh git plugin)
 alias gco="git checkout"
