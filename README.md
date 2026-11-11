@@ -36,7 +36,7 @@ Every step is safe to re-run. Each tool has its own script in `scripts/install/`
 | `starship` | core | prompt. Brew if available, else the official installer to `~/.local/bin` |
 | `nvm` | core | nvm + Node LTS |
 | `claude-code` | core | Claude Code CLI |
-| `tmux` | core | TPM + the plugins in `tmux/tmux.conf` (tmux itself comes from the Brewfile) |
+| `tmux` | core | TPM + the plugins in `tmux/tmux.conf`: navigator, which-key, fzf, resurrect, continuum, theme |
 | `rust` | optional | rustup. It adds `~/.cargo/env` to the machine's own shell files |
 | `sdkman` | optional | SDKMAN, plus any candidates you pass (`java scala sbt`) |
 
@@ -143,11 +143,19 @@ Prefix is **`C-a`** (press twice to send a literal `C-a`). Tips for finding shor
 | `prefix H/J/K/L` | resize, repeatable |
 | `prefix z` / `prefix x` | zoom / kill pane |
 | `prefix c`, `prefix Tab`, `prefix < / >` | new window, last window, move window |
+| `prefix F` | fzf menu: switch/kill/rename sessions, windows, panes; run any tmux command ([tmux-fzf](https://github.com/sainnhe/tmux-fzf)) |
 | `prefix s` / `prefix N` | session tree / new session |
+| `prefix C-s` / `prefix C-r` | save / restore sessions now (also automatic, see below) |
 | `prefix Enter`, then `v` / `C-v` / `y` | copy mode: select / rectangle / copy to the system clipboard (OSC 52, works over SSH) |
 | `prefix C-l` | clear screen (plain `C-l` is pane navigation) |
 | `prefix r` | reload config |
 | `prefix I` / `prefix U` | install / update plugins |
+
+**Sessions survive reboots.** [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) saves every 15 minutes
+through [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect). The first `tmux` after a reboot restores
+sessions, windows, splits, working dirs, pane contents and programs (nvim, ssh, lazygit, ...).
+Saves go to `~/.local/share/tmux/resurrect/`. Autosave pauses while a second tmux server is running, so two
+environments can't overwrite each other's saves.
 
 Ghostty's own `ctrl+h/j/k/l` split navigation is `performable:`. Ghostty only takes the key
 when it has a split in that direction, so in a single Ghostty pane the keys reach tmux and nvim.
