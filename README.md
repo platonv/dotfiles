@@ -21,7 +21,7 @@ Afterwards:
 
 | Command | Does |
 |---|---|
-| `./install.sh` | everything below except `tool` |
+| `./install.sh` | packages → link → shell → desktop (not `tool`) |
 | `./install.sh packages` | Homebrew/Linuxbrew + `packages/Brewfile`, apt base on Ubuntu, Ghostty/Zed/font on Ubuntu |
 | `./install.sh shell` | creates `~/.zshrc` from the template **only if missing**, installs the core tools, sets zsh as login shell |
 | `./install.sh link` | symlinks from `links.conf` |
@@ -36,6 +36,7 @@ Every step is safe to re-run. Each tool has its own script in `scripts/install/`
 | `starship` | core | prompt. Brew if available, else the official installer to `~/.local/bin` |
 | `nvm` | core | nvm + Node LTS |
 | `claude-code` | core | Claude Code CLI |
+| `tmux` | core | TPM + the plugins in `tmux/tmux.conf` (tmux itself comes from the Brewfile) |
 | `rust` | optional | rustup. It adds `~/.cargo/env` to the machine's own shell files |
 | `sdkman` | optional | SDKMAN, plus any candidates you pass (`java scala sbt`) |
 
@@ -73,6 +74,7 @@ Knobs to set before the source line: `ZSH_EXTRA_PLUGINS=(...)`, `DOTFILES_NO_STA
 | `git/ignore` (global gitignore) | `~/.config/git/ignore` |
 | `ghostty/config.ghostty` | `~/.config/ghostty/config.ghostty` |
 | `starship/starship.toml` | `~/.config/starship.toml` |
+| `tmux/tmux.conf` | `~/.tmux.conf` (machine overrides: `~/.tmux.local.conf`) |
 | `nvim/` (kickstart.nvim fork, `vim.pack`, Neovim ≥ 0.12) | `~/.config/nvim` |
 | `zed/settings.json` | `~/.config/zed/settings.json` |
 | `ai/claude/settings.json` | `~/.claude/settings.json` |
@@ -103,6 +105,30 @@ Anything `link.sh` would replace gets moved to `~/.dotfiles-backup/<timestamp>/`
 | `alt+.` | command palette |
 | `ctrl+shift+f` | search scrollback |
 
+### tmux keys
+
+Prefix is **`C-a`** (press twice to send a literal `C-a`). Tips for finding shortcuts:
+- **`prefix ?`** lists every binding with a description. All custom ones have one.
+- **`prefix Space`** opens a which-key style menu ([tmux-which-key](https://github.com/alexwforsythe/tmux-which-key)) for everything.
+- A red **PREFIX** badge in the status bar shows when the prefix is active.
+
+| Keys | Action |
+|---|---|
+| `C-h/j/k/l` (no prefix) | move between tmux panes **and** nvim splits ([vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)) |
+| `prefix \|` or `prefix \` / `prefix -` | split right / down, in the current directory |
+| `prefix h/j/k/l` | move between panes (fallback) |
+| `prefix H/J/K/L` | resize, repeatable |
+| `prefix z` / `prefix x` | zoom / kill pane |
+| `prefix c`, `prefix Tab`, `prefix < / >` | new window, last window, move window |
+| `prefix s` / `prefix N` | session tree / new session |
+| `prefix Enter`, then `v` / `C-v` / `y` | copy mode: select / rectangle / copy to the system clipboard (OSC 52, works over SSH) |
+| `prefix C-l` | clear screen (plain `C-l` is pane navigation) |
+| `prefix r` | reload config |
+| `prefix I` / `prefix U` | install / update plugins |
+
+Ghostty's own `ctrl+h/j/k/l` split navigation is `performable:`. Ghostty only takes the key
+when it has a split in that direction, so in a single Ghostty pane the keys reach tmux and nvim.
+
 ## Public repo: what stays out
 
 This repo is public. Secrets, personal details, work info, and per-machine setup stay out of it.
@@ -112,6 +138,7 @@ They go in local files that git never sees:
 |---|---|
 | `~/.zshrc` | everything machine-specific in the shell |
 | `~/.gitconfig.local` | git identity, credential helper, `includeIf` for other identities |
+| `~/.tmux.local.conf` | machine-specific tmux overrides |
 | `packages/Brewfile.local` | extra packages for one machine (gitignored) |
 | `~/.config/dotfiles/blocklist` | words the leak check must reject |
 

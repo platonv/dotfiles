@@ -33,6 +33,9 @@ Personal dotfiles for Ubuntu and macOS. `README.md` has the full layout. This fi
 - `packages/Brewfile` serves both OSes (casks inside `if OS.mac?`). `apt.txt` is just the Ubuntu base.
 - `nvim/` is a kickstart.nvim fork on `vim.pack` (Neovim ≥ 0.12). `nvim-pack-lock.json` pins plugins and is tracked.
   Custom plugins go in `nvim/lua/custom/plugins/*.lua`.
+- `tmux/tmux.conf` → `~/.tmux.conf` (not XDG: tmux-which-key's XDG mode uses GNU-only `realpath --relative-to`).
+  Give every new binding a `-N "note"` so `prefix ?` stays a complete cheat sheet. Plugins via TPM in `~/.tmux/plugins`.
+  `C-h/j/k/l` are shared by Ghostty (`performable:`), tmux and nvim (vim-tmux-navigator), so keep all three in sync.
 - `starship/starship.toml` uses an explicit `format` allow-list. Don't add cloud/k8s context modules.
   Nerd Font glyphs can get stripped by some editors and tools, so check them with a codepoint dump after editing.
 - `ai/claude/` holds only Claude Code `settings.json` for now. `~/.claude/CLAUDE.md` stays per machine and isn't tracked yet.
@@ -49,6 +52,7 @@ Personal dotfiles for Ubuntu and macOS. `README.md` has the full layout. This fi
 | Add an alias | `zsh/aliases.zsh` |
 | Check zsh | `zsh -n zsh/*.zsh`, then test via a temp `ZDOTDIR` with a `.zshrc` copied from `zsh/zshrc.template` |
 | Check Ghostty | `ghostty +validate-config --config-file=ghostty/config.ghostty` |
+| Check tmux | `tmux -L test -f tmux/tmux.conf new -d && tmux -L test show-messages; tmux -L test kill-server` |
 | Check starship | `STARSHIP_CONFIG=starship/starship.toml starship prompt` (no warnings printed) |
 | Check scripts | `bash -n install.sh scripts/*.sh scripts/install/*.sh packages/*.sh` (and `shellcheck` if installed) |
 

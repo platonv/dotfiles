@@ -31,12 +31,13 @@ keybind = alt+backslash=new_split:right
 keybind = alt+minus=new_split:down
 keybind = alt+enter=new_split:down
 
-# Navigate splits vim style. Neovim's own <C-hjkl> maps are disabled in
-# nvim/init.lua, so these don't collide.
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:down
-keybind = ctrl+k=goto_split:up
-keybind = ctrl+l=goto_split:right
+# Navigate Ghostty splits vim style. `performable:` means Ghostty only takes the key
+# when there's a split to move to. Otherwise C-h/j/k/l pass through to tmux / nvim
+# (vim-tmux-navigator), so a single Ghostty pane running tmux works as expected.
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:down
+keybind = performable:ctrl+k=goto_split:up
+keybind = performable:ctrl+l=goto_split:right
 
 keybind = alt+shift+h=resize_split:left,50
 keybind = alt+shift+j=resize_split:down,30

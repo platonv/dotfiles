@@ -3,9 +3,9 @@
 #
 #   git clone https://github.com/platonv/dotfiles.git ~/dotfiles && ~/dotfiles/install.sh
 #
-#   ./install.sh                 packages + shell + link + desktop (core only)
+#   ./install.sh                 packages + link + shell + desktop (core only)
 #   ./install.sh packages        OS packages (Brewfile / apt)
-#   ./install.sh shell           ~/.zshrc hook + core tools (oh-my-zsh, starship, nvm, claude-code)
+#   ./install.sh shell           ~/.zshrc hook + core tools (oh-my-zsh, starship, nvm, claude-code, tmux plugins)
 #   ./install.sh link            symlinks from links.conf
 #   ./install.sh desktop         GNOME settings (Linux only)
 #   ./install.sh tool <name>...  optional installers from scripts/install/, e.g. `tool rust sdkman`
@@ -20,7 +20,7 @@ step="${1:-all}"
 [[ $# -gt 0 ]] && shift
 
 # Tools every machine gets. Everything else in scripts/install/ is opt-in.
-CORE_TOOLS="ohmyzsh starship nvm claude-code"
+CORE_TOOLS="ohmyzsh starship nvm claude-code tmux"
 
 run_tool() {
   local script="$DOTFILES/scripts/install/$1.sh"
@@ -76,7 +76,7 @@ post_link() {
 
 info "OS: $OS, step: $step"
 case "$step" in
-  all)      do_packages; do_shell; do_link; do_desktop ;;
+  all)      do_packages; do_link; do_shell; do_desktop ;;   # link before shell: tmux plugins need ~/.tmux.conf
   packages) do_packages ;;
   shell)    do_shell ;;
   link)     do_link ;;
